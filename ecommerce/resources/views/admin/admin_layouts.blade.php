@@ -41,6 +41,11 @@
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('public/backend/css/starlight.css') }}">
+
+    <!-- Datatable css -->
+    <link href="{{ asset('public/backend/lib/highlightjs/github.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/backend/lib/select2/css/select2.min.css') }}" rel="stylesheet">
     
 </head>
 
@@ -61,21 +66,15 @@
                         <span class="menu-item-label">Dashboard</span>
                     </div><!-- menu-item -->
                 </a><!-- sl-menu-link -->
-                <a href="widgets.html" class="sl-menu-link">
-                    <div class="sl-menu-item">
-                        <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-                        <span class="menu-item-label">Cards &amp; Widgets</span>
-                    </div><!-- menu-item -->
-                </a><!-- sl-menu-link -->
                 <a href="#" class="sl-menu-link">
                     <div class="sl-menu-item">
                         <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-                        <span class="menu-item-label">Charts</span>
+                        <span class="menu-item-label">Categories</span>
                         <i class="menu-item-arrow fa fa-angle-down"></i>
                     </div><!-- menu-item -->
                 </a><!-- sl-menu-link -->
                 <ul class="sl-menu-sub nav flex-column">
-                    <li class="nav-item"><a href="chart-morris.html" class="nav-link">Category</a></li>
+                    <li class="nav-item"><a href="{{ route('categories') }}" class="nav-link">Category</a></li>
                     <li class="nav-item"><a href="chart-flot.html" class="nav-link">Sub Category</a></li>
                     <li class="nav-item"><a href="chart-chartjs.html" class="nav-link">Brand</a></li>
                 </ul>
