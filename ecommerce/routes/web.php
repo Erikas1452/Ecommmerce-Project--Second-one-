@@ -93,3 +93,10 @@ Route::get('add/wishlist/{id}', 'WishlistController@addWishlist');
 //Cart Routes
 Route::get('add/to/cart/{id}', 'CartController@AddCart');
 Route::get('check', 'CartController@check');
+Route::get('product/cart', 'CartController@ShowCart')->name('show.cart');
+Route::get('remove/cart/{rowId}', 'CartController@removeCart');
+Route::post('update/cart/item/', 'CartController@UpdateCart')->name('update.cartitem');
+
+//Product Details
+Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductView');
+Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
