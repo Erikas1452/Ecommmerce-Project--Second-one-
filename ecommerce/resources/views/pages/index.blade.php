@@ -233,13 +233,14 @@
                                                     <div class="product_extras">
 
                                                         <button id="{{ $row->id }}"
-                                                            class="product_cart_button addcart" data-toggle="modal"
-                                                            data-target="#cartmodal" onclick="productview(this.id)">Add to
+                                                            class="product_cart_button addcart"
+                                                            data-id="{{ $row->id }}" data-toggle="modal"
+                                                            data-target="#cartmodal" onclick="addToCart(this.id)">Add to
                                                             Cart</button>
                                                     </div>
                                                 </div>
 
-                                                <button class="addwishlist" data-id="{{ $row->id }}">
+                                                <button class="addwishlist" onclick='addWishlist({{ $row->id }})'>
                                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                 </button>
 
@@ -305,14 +306,14 @@
                                                     <div class="product_extras">
 
                                                         <button id="{{ $row->id }}"
-                                                            class="product_cart_button addcart" data-toggle="modal"
-                                                            data-target="#cartmodal" onclick="productview(this.id)">Add
-                                                            to
+                                                            class="product_cart_button addcart"
+                                                            data-id="{{ $row->id }}" data-toggle="modal"
+                                                            data-target="#cartmodal" onclick="addToCart(this.id)">Add to
                                                             Cart</button>
                                                     </div>
                                                 </div>
 
-                                                <button class="addwishlist" data-id="{{ $row->id }}">
+                                                <button class="addwishlist" onclick='addWishlist({{ $row->id }})'>
                                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                 </button>
 
@@ -378,13 +379,14 @@
                                                     <div class="product_extras">
 
                                                         <button id="{{ $row->id }}"
-                                                            class="product_cart_button addcart" data-toggle="modal"
-                                                            data-target="#cartmodal" onclick="productview(this.id)">Add to
+                                                            class="product_cart_button addcart"
+                                                            data-id="{{ $row->id }}" data-toggle="modal"
+                                                            data-target="#cartmodal" onclick="addToCart(this.id)">Add to
                                                             Cart</button>
                                                     </div>
                                                 </div>
 
-                                                <button class="addwishlist" data-id="{{ $row->id }}">
+                                                <button class="addwishlist" onclick='addWishlist({{ $row->id }})'>
                                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                 </button>
 
@@ -604,11 +606,16 @@
                                                                 <input type="radio" name="product_color"
                                                                     style="background:#999999">
                                                             </div>
-                                                            <button class="product_cart_button">Add to Cart</button>
+                                                            <button id="{{ $row->id }}"
+                                                                class="product_cart_button addcart"
+                                                                data-id="{{ $row->id }}" data-toggle="modal"
+                                                                data-target="#cartmodal" onclick="addToCart(this.id)">Add
+                                                                to
+                                                                Cart</button>
                                                         </div>
                                                     </div>
 
-                                                    <button class="addwishlist" data-id="{{ $row->id }}">
+                                                    <button class="addwishlist" onclick='addWishlist({{ $row->id }})'>
                                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                     </button>
 
@@ -720,11 +727,16 @@
                                                                 <input type="radio" name="product_color"
                                                                     style="background:#999999">
                                                             </div>
-                                                            <button class="product_cart_button">Add to Cart</button>
+                                                            <button id="{{ $row->id }}"
+                                                                class="product_cart_button addcart"
+                                                                data-id="{{ $row->id }}" data-toggle="modal"
+                                                                data-target="#cartmodal" onclick="addToCart(this.id)">Add
+                                                                to
+                                                                Cart</button>
                                                         </div>
                                                     </div>
 
-                                                    <button class="addwishlist" data-id="{{ $row->id }}">
+                                                    <button class="addwishlist" onclick='addWishlist({{ $row->id }})'>
                                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                     </button>
 
@@ -1794,7 +1806,8 @@
                                     <div class="trends_item is_new">
                                         <div
                                             class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{ asset($row->image_one) }}" alt=""></div>
+                                            <img src="{{ asset($row->image_one) }}" alt="">
+                                        </div>
                                         <div class="trends_content">
                                             <div class="trends_category"><a href="#">{{ $row->brand_name }}</a></div>
                                             <div class="trends_info clearfix">
@@ -1817,9 +1830,9 @@
 
                                             <li class="trends_mark trends_new">BuyGet</li>
                                         </ul>
-                                        <button class="addwishlist" data-id="{{ $row->id }}">
-                                            <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                                        </button>
+                                        <<button class="addwishlist" onclick='addWishlist({{ $row->id }})'>
+                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                            </button>
 
                                     </div>
                                 </div>
@@ -2224,49 +2237,88 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('.addwishlist').click(function() {
-                var id = $(this).data('id');
-                console.log('clicked');
-                if (id) {
-                    alert('sucess');
-                    $.ajax({
-                        url: " {{ url('add/wishlist/') }}" + id,
-                        type: "GET",
-                        datType: "json",
-                        success: function(data) {
-                            console.log(data);
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                onOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal
-                                        .stopTimer)
-                                    toast.addEventListener('mouseleave', Swal
-                                        .resumeTimer)
-                                }
-                            })
-                            if ($.isEmptyObject(data.error)) {
-                                Toast.fire({
-                                    icon: 'success',
-                                    title: data.success
-                                })
-                            } else {
-                                Toast.fire({
-                                    icon: 'error',
-                                    title: data.error
-                                })
+        function addWishlist(id) {
+            console.log('clicked');
+            if (id) {
+                alert('sucess');
+                $.ajax({
+                    url: " {{ url('add/wishlist/') }}/" + id,
+                    type: "GET",
+                    datType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal
+                                    .stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
                             }
-                        },
-                    });
-                } else {
-                    alert('danger');
-                }
-            });
-        });
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            })
+                        }
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function addToCart(id) {
+            if (id) {
+                $.ajax({
+                    url: " {{ url('/add/to/cart/') }}/" + id,
+                    type: "GET",
+                    datType: "json",
+                    success: function(data) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal
+                                    .stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        if ($.isEmptyObject(data.error)) {
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            })
+                        }
+                    },
+                });
+
+            } else {
+                alert('danger');
+            }
+        }
     </script>
 
 

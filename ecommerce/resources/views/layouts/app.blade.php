@@ -21,7 +21,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/responsive.css') }}">
 
     <!-- Toastr -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 
 
     <!-- SweetAlert -->
@@ -80,7 +83,8 @@
                                             <a href="{{ route('login') }}">
                                                 <div class="user_icon">
                                                     <img src="{{ asset('public/frontend/images/user.svg') }}" alt="">
-                                                </div>Register/Login</a>
+                                                </div>Register/Login
+                                            </a>
                                         </div>
                                     @else
                                         <ul class="standard_dropdown top_bar_dropdown">

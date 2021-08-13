@@ -89,3 +89,7 @@ Route::post('update/post/{id}', 'Admin\PostController@UpdatePost');
 //Wishlist
 
 Route::get('add/wishlist/{id}', 'WishlistController@addWishlist');
+
+//Cart Routes
+Route::get('add/to/cart/{id}', 'CartController@AddCart');
+Route::get('check', 'CartController@check');
