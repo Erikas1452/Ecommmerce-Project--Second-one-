@@ -248,12 +248,25 @@
 
                             </div> <!-- col-4 -->
 
+                            <div class="col-lg-4">
+                                <label class="ckbox">
+                                    <input type="checkbox" name="buyone_getone" value="1" <?php
+                                    if ($product->buyone_getone == 1){
+                                        echo 'checked';
+                                    }
+                                    ?>
+                                    >
+                                    <span>Buy One Get One</span>
+                                </label>
+
+                            </div> <!-- col-4 -->
+
+
                         </div><!-- end row -->
                         <br><br>
 
                         <div class="form-layout-footer">
                             <button class="btn btn-info mg-r-5">Update Product</button>
-
                         </div><!-- form-layout-footer -->
                     </div><!-- form-layout -->
             </div><!-- card -->

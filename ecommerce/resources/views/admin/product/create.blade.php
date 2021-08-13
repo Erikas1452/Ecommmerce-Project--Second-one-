@@ -222,7 +222,14 @@
                                     <input type="checkbox" name="hot_new" value="1">
                                     <span>Hot New </span>
                                 </label>
+                            </div> <!-- col-4 -->
 
+                            
+                            <div class="col-lg-4">
+                                <label class="ckbox">
+                                    <input type="checkbox" name="buyone_getone" value="1">
+                                    <span>Buyone Getone </span>
+                                </label>
                             </div> <!-- col-4 -->
 
                         </div><!-- end row -->
