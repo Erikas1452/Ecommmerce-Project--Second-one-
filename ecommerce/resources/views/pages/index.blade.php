@@ -5427,4 +5427,54 @@
     </div>
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.addwishlist').click(function() {
+                var id = $(this).data('id');
+                console.log('clicked');
+                if (id) {
+                    alert('sucess');
+                    $.ajax({
+                        url: " {{ url('add/wishlist/') }}" + id,
+                        type: "GET",
+                        datType: "json",
+                        success: function(data) {
+                            console.log(data);
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                onOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal
+                                        .stopTimer)
+                                    toast.addEventListener('mouseleave', Swal
+                                        .resumeTimer)
+                                }
+                            })
+                            if ($.isEmptyObject(data.error)) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: data.success
+                                })
+                            } else {
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: data.error
+                                })
+                            }
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
+
+
 @endsection
