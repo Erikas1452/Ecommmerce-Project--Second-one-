@@ -21,7 +21,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/responsive.css') }}">
 
     <!-- Toastr -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 
 </head>
 
@@ -70,10 +71,31 @@
                                     </ul>
                                 </div>
                                 <div class="top_bar_user">
-                                    <div class="user_icon"><img src="{{ asset('public/frontend/images/user.svg') }}"
-                                            alt=""></div>
-                                    <div><a href="{{ route('register') }}">Register</a></div>
-                                    <div><a href="{{ route('login') }}">Sign in</a></div>
+
+                                    @guest
+                                        <div>
+                                            <a href="{{ route('login') }}">
+                                                <div class="user_icon">
+                                                    <img src="{{ asset('public/frontend/images/user.svg') }}" alt="">
+                                                </div>Register/Login</a>
+                                        </div>
+                                    @else
+                                        <ul class="standard_dropdown top_bar_dropdown">
+                                            <li>
+                                                <a href="{{ route('home') }}">
+                                                    <div class="user_icon"><img
+                                                            src="{{ asset('public/frontend/images/user.svg') }}" alt="">
+                                                    </div> Profile<i class="fas fa-chevron-down"></i>
+                                                </a>
+                                                <ul>
+                                                    <li><a href="#">Wishlist</a></li>
+                                                    <li><a href="#">Checkout</a></li>
+                                                    <li><a href="#">Others</a></li>
+                                                </ul>
+                                            </li>
+
+                                        </ul>
+                                    @endguest
                                 </div>
                             </div>
                         </div>
@@ -90,7 +112,8 @@
                         <!-- Logo -->
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
-                                <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset('public/frontend/images/logo.png') }}" alt=""></a></div>
+                                <div class="logo"><a href="{{ url('/') }}"><img
+                                            src="{{ asset('public/frontend/images/logo.png') }}" alt=""></a></div>
                             </div>
                         </div>
 
@@ -113,7 +136,8 @@
                                                     <i class="fas fa-chevron-down"></i>
                                                     <ul class="custom_list clc">
                                                         @foreach ($category as $row)
-                                                        <li><a class="clc" href="#">{{ $row->category_name}}</a></li>
+                                                            <li><a class="clc" href="#">{{ $row->category_name }}</a>
+                                                            </li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
@@ -144,7 +168,7 @@
                                 <div class="cart">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
-                                            <img src="images/cart.png" alt="">
+                                            <img src="{{ asset('public/frontend/images/cart.png') }}" alt="">
                                             <div class="cart_count"><span>10</span></div>
                                         </div>
                                         <div class="cart_content">
@@ -161,118 +185,118 @@
 
             @yield('content')
 
-        <!-- Footer -->
+            <!-- Footer -->
 
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
 
-                    <div class="col-lg-3 footer_col">
-                        <div class="footer_column footer_contact">
-                            <div class="logo_container">
-                                <div class="logo"><a href="#">OneTech</a></div>
+                        <div class="col-lg-3 footer_col">
+                            <div class="footer_column footer_contact">
+                                <div class="logo_container">
+                                    <div class="logo"><a href="#">OneTech</a></div>
+                                </div>
+                                <div class="footer_title">Got Question? Call Us 24/7</div>
+                                <div class="footer_phone">+38 068 005 3570</div>
+                                <div class="footer_contact_text">
+                                    <p>17 Princess Road, London</p>
+                                    <p>Grester London NW18JR, UK</p>
+                                </div>
+                                <div class="footer_social">
+                                    <ul>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-google"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="footer_title">Got Question? Call Us 24/7</div>
-                            <div class="footer_phone">+38 068 005 3570</div>
-                            <div class="footer_contact_text">
-                                <p>17 Princess Road, London</p>
-                                <p>Grester London NW18JR, UK</p>
-                            </div>
-                            <div class="footer_social">
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                        </div>
+
+                        <div class="col-lg-2 offset-lg-2">
+                            <div class="footer_column">
+                                <div class="footer_title">Find it Fast</div>
+                                <ul class="footer_list">
+                                    <li><a href="#">Computers & Laptops</a></li>
+                                    <li><a href="#">Cameras & Photos</a></li>
+                                    <li><a href="#">Hardware</a></li>
+                                    <li><a href="#">Smartphones & Tablets</a></li>
+                                    <li><a href="#">TV & Audio</a></li>
+                                </ul>
+                                <div class="footer_subtitle">Gadgets</div>
+                                <ul class="footer_list">
+                                    <li><a href="#">Car Electronics</a></li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-2 offset-lg-2">
-                        <div class="footer_column">
-                            <div class="footer_title">Find it Fast</div>
-                            <ul class="footer_list">
-                                <li><a href="#">Computers & Laptops</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Smartphones & Tablets</a></li>
-                                <li><a href="#">TV & Audio</a></li>
-                            </ul>
-                            <div class="footer_subtitle">Gadgets</div>
-                            <ul class="footer_list">
-                                <li><a href="#">Car Electronics</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <div class="footer_column">
-                            <ul class="footer_list footer_list_2">
-                                <li><a href="#">Video Games & Consoles</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Computers & Laptops</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <div class="footer_column">
-                            <div class="footer_title">Customer Care</div>
-                            <ul class="footer_list">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Order Tracking</a></li>
-                                <li><a href="#">Wish List</a></li>
-                                <li><a href="#">Customer Services</a></li>
-                                <li><a href="#">Returns / Exchange</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Product Support</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
-
-        <!-- Copyright -->
-
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-
-                        <div
-                            class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
-                            <div class="copyright_content">
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i
-                                    class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </div>
-                            <div class="logos ml-sm-auto">
-                                <ul class="logos_list">
-                                    <li><a href="#"><img src="{{ asset('public/frontend/images/logos_1.png') }}"
-                                                alt=""></a></li>
-                                    <li><a href="#"><img src="{{ asset('public/frontend/images/logos_2.png') }}"
-                                                alt=""></a></li>
-                                    <li><a href="#"><img src="{{ asset('public/frontend/images/logos_3.png') }}"
-                                                alt=""></a></li>
-                                    <li><a href="#"><img src="{{ asset('public/frontend/images/logos_4.png') }}"
-                                                alt=""></a></li>
+                        <div class="col-lg-2">
+                            <div class="footer_column">
+                                <ul class="footer_list footer_list_2">
+                                    <li><a href="#">Video Games & Consoles</a></li>
+                                    <li><a href="#">Accessories</a></li>
+                                    <li><a href="#">Cameras & Photos</a></li>
+                                    <li><a href="#">Hardware</a></li>
+                                    <li><a href="#">Computers & Laptops</a></li>
                                 </ul>
                             </div>
                         </div>
+
+                        <div class="col-lg-2">
+                            <div class="footer_column">
+                                <div class="footer_title">Customer Care</div>
+                                <ul class="footer_list">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Order Tracking</a></li>
+                                    <li><a href="#">Wish List</a></li>
+                                    <li><a href="#">Customer Services</a></li>
+                                    <li><a href="#">Returns / Exchange</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="#">Product Support</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Copyright -->
+
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+
+                            <div
+                                class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
+                                <div class="copyright_content">
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    <script>
+                                        document.write(new Date().getFullYear());
+                                    </script> All rights reserved | This template is made with <i
+                                        class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                        target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </div>
+                                <div class="logos ml-sm-auto">
+                                    <ul class="logos_list">
+                                        <li><a href="#"><img src="{{ asset('public/frontend/images/logos_1.png') }}"
+                                                    alt=""></a></li>
+                                        <li><a href="#"><img src="{{ asset('public/frontend/images/logos_2.png') }}"
+                                                    alt=""></a></li>
+                                        <li><a href="#"><img src="{{ asset('public/frontend/images/logos_3.png') }}"
+                                                    alt=""></a></li>
+                                        <li><a href="#"><img src="{{ asset('public/frontend/images/logos_4.png') }}"
+                                                    alt=""></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
