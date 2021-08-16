@@ -224,4 +224,11 @@ class CartController extends Controller
             ->back()
             ->with($notification);
     }
+
+    
+    public function PaymentPage(){
+        $cart = Cart::Content();
+        return view('pages.payment',compact('cart'));
+   }
+  
 }
