@@ -153,4 +153,75 @@ class CartController extends Controller
                 ->with($notification);
         }
     }
+
+    public function Checkout()
+    {
+        if (Auth::check()) {
+            $cart = Cart::content();
+            return view('pages.checkout', compact('cart'));
+        } else {
+            $notification = [
+                'messege' => 'At first Login Your Account',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->route('login')
+                ->with($notification);
+        }
+    }
+
+    public function wishlist()
+    {
+        $userid = Auth::id();
+        $product = DB::table('wishlists')
+            ->join('products', 'wishlists.product_id', 'products.id')
+            ->select('products.*', 'wishlists.user_id')
+            ->where('wishlists.user_id', $userid)
+            ->get();
+        // return response()->json($product);
+        return view('pages.wishlist', compact('product'));
+    }
+
+    public function Coupon(Request $request)
+    {
+        $coupon = $request->coupon;
+
+        $check = DB::table('coupons')
+            ->where('coupon', $coupon)
+            ->first();
+        if ($check) {
+            Session::put('coupon', [
+                'name' => $check->coupon,
+                'discount' => $check->discount,
+                'balance' => Cart::Subtotal() - $check->discount,
+            ]);
+            $notification = [
+                'messege' => 'Successfully Coupon Applied',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'Invalid Coupon',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
+    }
+
+    public function CouponRemove()
+    {
+        Session::forget('coupon');
+        $notification = [
+            'messege' => 'Coupon remove Successfully',
+            'alert-type' => 'success',
+        ];
+        return Redirect()
+            ->back()
+            ->with($notification);
+    }
 }

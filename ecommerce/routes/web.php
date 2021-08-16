@@ -97,8 +97,15 @@ Route::get('product/cart', 'CartController@ShowCart')->name('show.cart');
 Route::get('remove/cart/{rowId}', 'CartController@removeCart');
 Route::post('update/cart/item/', 'CartController@UpdateCart')->name('update.cartitem');
 Route::post('insert/into/cart/', 'CartController@insertCart')->name('insert.into.cart');
+//Wishlist
+Route::get('user/wishlist/', 'CartController@wishlist')->name('user.wishlist');
 
 //Product Details
 Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductView');
 Route::get('/cart/product/view/{id}', 'CartController@ViewProduct');
 Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
+
+//Checkout and Coupon
+Route::get('user/checkout/', 'CartController@Checkout')->name('user.checkout');
+Route::post('user/apply/coupon/', 'CartController@Coupon')->name('apply.coupon');
+Route::get('coupon/remove/', 'CartController@CouponRemove')->name('coupon.remove');
