@@ -91,15 +91,13 @@
                                  <ul>
                                      <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
                                      <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-                                     <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                     <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a>
+                                     <li><a href="{{ route('blog.post') }}">Blog Post<i class="fas fa-chevron-down"></i></a>
                                      </li>
-                                     <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
                                      <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
                                      <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
                                  </ul>
                              </li>
-                             <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
+                             <li><a href="{{ route('blog.post') }}">Blog<i class="fas fa-chevron-down"></i></a></li>
                              <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
                          </ul>
                      </div>

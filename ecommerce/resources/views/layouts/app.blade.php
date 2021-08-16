@@ -58,21 +58,20 @@
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
+                                        
+                                        @php
+                                        $language = Session()->get('lang');
+                                        @endphp
+
                                         <li>
-                                            <a href="#">English<i class="fas fa-chevron-down"></i></a>
-                                            <ul>
-                                                <li><a href="#">Italian</a></li>
-                                                <li><a href="#">Spanish</a></li>
-                                                <li><a href="#">Japanese</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-                                            <ul>
-                                                <li><a href="#">EUR Euro</a></li>
-                                                <li><a href="#">GBP British Pound</a></li>
-                                                <li><a href="#">JPY Japanese Yen</a></li>
-                                            </ul>
+                                            @if (Session()->get('lang') == 'hindi')
+                                                <a href="{{ route('language.english') }}">English<i
+                                                        class="fas fa-chevron-down"></i></a>
+                                            @else
+                                                <a href="{{ route('language.hindi') }}">Hindi<i
+                                                        class="fas fa-chevron-down"></i></a>
+                                            @endif
+
                                         </li>
                                     </ul>
                                 </div>
@@ -164,22 +163,25 @@
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
 
-                                @guest
-                                
-                                @else
+                                    @guest
 
-                                   @php
-                                        $wishlist = DB::table('wishlists')->where('user_id',Auth::id())->get();
-                                   @endphp
+                                    @else
 
-                                    <div class="wishlist_icon"><img
-                                            src="{{ asset('public/frontend/images/heart.png') }}" alt=""></div>
-                                    <div class="wishlist_content">
-                                        <div class="wishlist_text"><a href="{{ route('user.wishlist') }}">Wishlist</a></div>
-                                        <div class="wishlist_count">{{ count($wishlist) }}</div>
+                                        @php
+                                            $wishlist = DB::table('wishlists')
+                                                ->where('user_id', Auth::id())
+                                                ->get();
+                                        @endphp
+
+                                        <div class="wishlist_icon"><img
+                                                src="{{ asset('public/frontend/images/heart.png') }}" alt=""></div>
+                                        <div class="wishlist_content">
+                                            <div class="wishlist_text"><a
+                                                    href="{{ route('user.wishlist') }}">Wishlist</a></div>
+                                            <div class="wishlist_count">{{ count($wishlist) }}</div>
+                                        </div>
                                     </div>
-                                </div> 
-                                
+
                                 @endguest
 
                                 <!-- Cart -->
