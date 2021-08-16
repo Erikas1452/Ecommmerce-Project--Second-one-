@@ -71,7 +71,9 @@ Route::get('view/product/{id}', 'Admin\ProductController@ViewProduct');
 Route::get('edit/product/{id}', 'Admin\ProductController@EditProduct');
 Route::post('update/product/withoutphoto/{id}', 'Admin\ProductController@UpdateProductWithoutPhoto');
 Route::post('update/product/photo/{id}', 'Admin\ProductController@UpdateProductPhoto');
-Route::get('get/subcategory/{category_id}', 'Admin\ProductController@GetSubcat');
+Route::get('products/{id}', 'ProductController@ProductsView');
+Route::get('allcategory/{id}', 'ProductController@CategoryView');
+
 
 //Blog Routes
 Route::get('blog/category/list', 'Admin\PostController@BlogCatList')->name('add.blog.categorylist');

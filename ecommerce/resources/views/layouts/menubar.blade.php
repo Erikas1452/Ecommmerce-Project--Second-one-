@@ -24,7 +24,7 @@
                                  
                              
                              <li class="hassubs">
-                                 <a href="#">{{ $cat->category_name }}<i class="fas fa-chevron-right"></i></a>
+                                 <a href="{{ url('allcategory/'.$cat->id) }}">{{ $cat->category_name }}<i class="fas fa-chevron-right"></i></a>
                                  <ul>
                                      @php
                                          $subcategory = DB::table('subcategories')->where('category_id',$cat->id)->get();
@@ -32,7 +32,7 @@
 
                                      @foreach ($subcategory as $row)
                                         <li class="hassubs">
-                                            <a href="#">{{ $row->subcategory_name }}<i class="fas fa-chevron-right"></i></a>
+                                            <a href="{{ url('products/'.$row->id) }}">{{ $row->subcategory_name }}<i class="fas fa-chevron-right"></i></a>
                                         </li>  
                                      @endforeach
                                      
