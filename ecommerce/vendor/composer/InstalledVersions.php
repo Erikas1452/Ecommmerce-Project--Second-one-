@@ -911,6 +911,15 @@ private static $installed = array (
       ),
       'reference' => '99732be0ddb3361e16ad77b68ba41efc8e979019',
     ),
+    'stripe/stripe-php' => 
+    array (
+      'pretty_version' => 'v7.93.0',
+      'version' => '7.93.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c739cf6841bb3498e23bd52ecfadfcb21c521a14',
+    ),
     'swiftmailer/swiftmailer' => 
     array (
       'pretty_version' => 'v6.2.7',
