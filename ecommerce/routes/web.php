@@ -136,3 +136,7 @@ Route::get('admin/delevery/process/{id}', 'Admin\OrderController@DeleveryProcess
 Route::get('admin/delevery/done/{id}', 'Admin\OrderController@DeleveryDone');
 //user
 Route::get('view/order/{id}', 'Admin\OrderController@ViewUserOrder');
+
+//SEO
+Route::get('admin/seo', 'Admin\OrderController@seo')->name('admin.seo');
+Route::post('admin/seo/update', 'Admin\OrderController@UpdateSeo')->name('update.seo');
