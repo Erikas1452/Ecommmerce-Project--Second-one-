@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('content')
 
+    @php
+    $order = DB::table('orders')
+        ->where('user_id', Auth::id())
+        ->orderBy('id', 'DESC')
+        ->limit(10)
+        ->get();
+    @endphp
+
     <div class="contact_form">
         <div class="container">
             <div class="row">
@@ -13,27 +21,39 @@
                                 <th scope="col">Amount </th>
                                 <th scope="col">Date </th>
                                 <th scope="col">Status </th>
-                                <th scope="col">Status Code </th>
                                 <th scope="col">Action </th>
 
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($order as $row)
                                 <tr>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
+                                    <td scope="col">{{ $row->payment_type }} </td>
+                                    <td scope="col">{{ $row->payment_id }} </td>
+                                    <td scope="col">{{ $row->total }}$ </td>
+                                    <td scope="col">{{ $row->date }} </td>
 
                                     <td scope="col">
-                                    
+                                        @if ($row->status == 0)
+                                            <span class="badge badge-warning">Pending</span>
+                                        @elseif($row->status == 1)
+                                            <span class="badge badge-info">Payment Accept</span>
+                                        @elseif($row->status == 2)
+                                            <span class="badge badge-warning">Progress</span>
+                                        @elseif($row->status == 3)
+                                            <span class="badge badge-success">Delevered</span>
+                                        @else
+                                            <span class="badge badge-danger">Cancle</span>
+
+                                        @endif
+
                                     </td>
 
-                                    <td scope="col"> </td>
                                     <td scope="col">
-                                        
+                                        <a href={{  URL::to('view/order/'.$row->id) }} class="btn btn-sm btn-info"> View</a>
                                     </td>
                                 </tr>
+                            @endforeach
 
                         </tbody>
 

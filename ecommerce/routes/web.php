@@ -134,3 +134,5 @@ Route::get('admin/process/payment', 'Admin\OrderController@ProcessPayment')->nam
 Route::get('admin/success/payment', 'Admin\OrderController@SuccessPayment')->name('admin.success.payment');
 Route::get('admin/delevery/process/{id}', 'Admin\OrderController@DeleveryProcess');
 Route::get('admin/delevery/done/{id}', 'Admin\OrderController@DeleveryDone');
+//user
+Route::get('view/order/{id}', 'Admin\OrderController@ViewUserOrder');
