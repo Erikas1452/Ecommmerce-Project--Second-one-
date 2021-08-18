@@ -152,3 +152,11 @@ Route::get('admin/search/report', 'Admin\ReportController@Search')->name('search
 Route::post('admin/search/by/year', 'Admin\ReportController@SearchByYear')->name('search.by.year');
 Route::post('admin/search/by/month', 'Admin\ReportController@SearchByMonth')->name('search.by.month');
 Route::post('admin/search/by/date', 'Admin\ReportController@SearchByDate')->name('search.by.date');
+
+//Admin Roles
+Route::get('admin/all/user', 'Admin\UserRoleController@UserRole')->name('admin.all.user');
+Route::get('admin/create/admin', 'Admin\UserRoleController@UserCreate')->name('create.admin');
+Route::post('admin/store/admin', 'Admin\UserRoleController@UserStore')->name('store.admin');
+Route::get('delete/admin/{id}', 'Admin\UserRoleController@UserDelete');
+Route::get('edit/admin/{id}', 'Admin\UserRoleController@UserEdit');
+Route::post('admin/update/admin', 'Admin\UserRoleController@UserUpdate')->name('update.admin');
