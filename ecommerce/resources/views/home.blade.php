@@ -20,7 +20,8 @@
                                 <th scope="col">Payment ID </th>
                                 <th scope="col">Amount </th>
                                 <th scope="col">Date </th>
-                                <th scope="col">Status </th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Status Code</th>
                                 <th scope="col">Action </th>
 
                             </tr>
@@ -47,7 +48,7 @@
 
                                         @endif
 
-                                    </td>
+                                    <td scope="col">{{ $row->status_code }} </td>
 
                                     <td scope="col">
                                         <a href={{  URL::to('view/order/'.$row->id) }} class="btn btn-sm btn-info"> View</a>

@@ -58,12 +58,10 @@
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
-                                        
-                                        @php
-                                        $language = Session()->get('lang');
-                                        @endphp
 
-                                        <li>
+                                        @guest
+                                            <li>
+                                            
                                             @if (Session()->get('lang') == 'hindi')
                                                 <a href="{{ route('language.english') }}">English<i
                                                         class="fas fa-chevron-down"></i></a>
@@ -73,6 +71,24 @@
                                             @endif
 
                                         </li>
+                                        @else
+                                            <li>
+                                                <a href="" data-toggle="modal" data-target="#exampleModal">My Order Traking</a>                   
+                                            </li>
+
+                                            <li>
+                                            
+                                                @if (Session()->get('lang') == 'hindi')
+                                                    <a href="{{ route('language.english') }}">English<i
+                                                            class="fas fa-chevron-down"></i></a>
+                                                @else
+                                                    <a href="{{ route('language.hindi') }}">Hindi<i
+                                                            class="fas fa-chevron-down"></i></a>
+                                                @endif
+    
+                                            </li>
+                                        @endguest
+                                        
                                     </ul>
                                 </div>
                                 <div class="top_bar_user">
@@ -317,6 +333,36 @@
                     </div>
                 </div>
             </div>
+    </div>
+
+    <!--Order Traking Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Your Status Code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{ route('order.tracking') }}">
+                        @csrf
+                        <div class="modal-body">
+                            <label> Status Code</label>
+                            <input type="text" name="code" required="" class="form-control"
+                                placeholder="Your Order Status Code">
+                        </div>
+
+                        <button class="btn btn-danger" type="submit">Track Now </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
