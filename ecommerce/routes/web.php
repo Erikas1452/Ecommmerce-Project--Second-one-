@@ -164,3 +164,10 @@ Route::post('admin/update/admin', 'Admin\UserRoleController@UserUpdate')->name('
 //Site settings
 Route::get('admin/site/setting', 'Admin\SettingController@SiteSetting')->name('admin.site.setting');
 Route::post('admin/sitesetting', 'Admin\SettingController@UpdateSiteSetting')->name('update.sitesetting');
+
+//Order Returning
+Route::get('success/list/', 'PaymentController@SuccessList')->name('success.orderlist');
+Route::get('request/return/{id}', 'PaymentController@RequestReturn');
+Route::get('admin/return/request/', 'Admin\ReturnController@ReturnRequest')->name('admin.return.request');
+Route::get('admin/approve/return/{id}', 'Admin\ReturnController@ApproveReturn');
+Route::get('admin/all/return/', 'Admin\ReturnController@AllReturn')->name('admin.all.return');

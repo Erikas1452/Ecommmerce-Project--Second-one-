@@ -1,14 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    @php
-    $order = DB::table('orders')
-        ->where('user_id', Auth::id())
-        ->orderBy('id', 'DESC')
-        ->limit(10)
-        ->get();
-    @endphp
-
     <div class="contact_form">
         <div class="container">
             <div class="row">
@@ -17,20 +9,29 @@
                         <thead>
                             <tr>
                                 <th scope="col">Payment Type </th>
-                                <th scope="col">Payment ID </th>
+                                <th scope="col">Return </th>
                                 <th scope="col">Amount </th>
                                 <th scope="col">Date </th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Status Code</th>
+                                <th scope="col">Status </th>
                                 <th scope="col">Action </th>
-
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($order as $row)
                                 <tr>
                                     <td scope="col">{{ $row->payment_type }} </td>
-                                    <td scope="col">{{ $row->payment_id }} </td>
+
+                                    <td scope="col">
+                                        @if ($row->return_order == 0)
+                                            <span class="badge badge-warning">No Request</span>
+                                        @elseif($row->return_order == 1)
+                                            <span class="badge badge-info">Pending</span>
+                                        @elseif($row->return_order == 2)
+                                            <span class="badge badge-warning">Success</span>
+
+                                        @endif
+                                    </td>
+
                                     <td scope="col">{{ $row->total }}$ </td>
                                     <td scope="col">{{ $row->date }} </td>
 
@@ -47,11 +48,18 @@
                                             <span class="badge badge-danger">Cancle</span>
 
                                         @endif
-
-                                    <td scope="col">{{ $row->status_code }} </td>
+                                    </td>
 
                                     <td scope="col">
-                                        <a href={{  URL::to('view/order/'.$row->id) }} class="btn btn-sm btn-info"> View</a>
+                                        @if ($row->return_order == 0)
+                                            <a href="{{ url('request/return/' . $row->id) }}" class="btn btn-sm btn-danger"
+                                                id="return"> Return</a>
+                                        @elseif($row->return_order == 1)
+                                            <span class="badge badge-info">Pending</span>
+                                        @elseif($row->return_order == 2)
+                                            <span class="badge badge-warning">Success</span>
+
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -68,16 +76,16 @@
                             style="height: 90px; width: 90px; margin-left: 34%;">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ Auth::user()->name }}</h5>
-
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"> <a href="{{ route('password.change') }}">Change Password</a></li>
-                            <li class="list-group-item"> <a href="{{ route('success.orderlist') }}">Return Order</a></li> 
+                            <li class="list-group-item"> <a href="{{ route('password.change') }}">Change Password</a>
+                            </li>
+                            <li class="list-group-item">Edit Profile</li>
+                            <li class="list-group-item"><a href="{{ route('success.orderlist') }}"> Return Order</a> </li>
                         </ul>
 
                         <div class="card-body">
                             <a href="{{ route('user.logout') }}" class="btn btn-danger btn-sm btn-block">Logout</a>
-
                         </div>
 
                     </div>

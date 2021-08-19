@@ -226,6 +226,23 @@
                 @else
                 @endif
 
+                @if (Auth::user()->return == 1)
+                    <a href="#" class="sl-menu-link">
+                        <div class="sl-menu-item">
+                            <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+                            <span class="menu-item-label">Return Order</span>
+                            <i class="menu-item-arrow fa fa-angle-down"></i>
+                        </div><!-- menu-item -->
+                    </a><!-- sl-menu-link -->
+                    <ul class="sl-menu-sub nav flex-column">
+                        <li class="nav-item"><a href="{{ route('admin.return.request') }}" class="nav-link">Return
+                                Request</a></li>
+                        <li class="nav-item"><a href="{{ route('admin.all.return') }}" class="nav-link">All Request </a>
+                        </li>
+                    </ul>
+                @else
+                @endif
+
 
             </div><!-- sl-sideleft-menu -->
 

@@ -64,7 +64,7 @@ class PaymentController extends Controller
         $data['vat'] = $request->vat;
         $data['total'] = $request->total;
         $data['payment_type'] = $request->payment_type;
-        $data['status_code'] = mt_rand(100000,999999);
+        $data['status_code'] = mt_rand(100000, 999999);
 
         if (Session::has('coupon')) {
             $data['subtotal'] = Session::get('coupon')['balance'];
@@ -114,6 +114,31 @@ class PaymentController extends Controller
         ];
         return Redirect()
             ->to('/')
+            ->with($notification);
+    }
+
+    public function SuccessList()
+    {
+        $order = DB::table('orders')
+            ->where('user_id', Auth::id())
+            ->orderBy('id', 'DESC')
+            ->limit(10)
+            ->get();
+
+        return view('pages.returnorder', compact('order'));
+    }
+
+    public function RequestReturn($id)
+    {
+        DB::table('orders')
+            ->where('id', $id)
+            ->update(['return_order' => 1]);
+        $notification = [
+            'messege' => 'Order Request Done',
+            'alert-type' => 'success',
+        ];
+        return Redirect()
+            ->back()
             ->with($notification);
     }
 }

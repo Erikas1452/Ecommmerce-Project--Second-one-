@@ -409,7 +409,7 @@ $setting = DB::table('sitesetting')->first();
         @endif
     </script>
 
-
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-611e96a2a90377e7"></script>
 </body>
 
 </html>
