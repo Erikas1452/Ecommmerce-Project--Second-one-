@@ -160,3 +160,7 @@ Route::post('admin/store/admin', 'Admin\UserRoleController@UserStore')->name('st
 Route::get('delete/admin/{id}', 'Admin\UserRoleController@UserDelete');
 Route::get('edit/admin/{id}', 'Admin\UserRoleController@UserEdit');
 Route::post('admin/update/admin', 'Admin\UserRoleController@UserUpdate')->name('update.admin');
+
+//Site settings
+Route::get('admin/site/setting', 'Admin\SettingController@SiteSetting')->name('admin.site.setting');
+Route::post('admin/sitesetting', 'Admin\SettingController@UpdateSiteSetting')->name('update.sitesetting');
